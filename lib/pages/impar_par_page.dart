@@ -10,13 +10,13 @@ class ImparOuPar extends StatefulWidget {
 }
 
 class _ImparOuParState extends State<ImparOuPar> {
-  String resultado = 'Teste';
+  String resultado = '';
   var _controler1 = '';
 
   calculator() {
     // ignore: unnecessary_null_comparison
     if (double.tryParse(_controler1) == null) {
-      resultado = 'Erro';
+      resultado = 'Dados inseridos invalidos';
     } else {
       if (double.tryParse(_controler1)! % 2 == 0) {
         resultado = 'Par';
