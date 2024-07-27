@@ -16,6 +16,7 @@ class _TemperaturaState extends State<Temperatura> {
   var _controler2 = '';
   double aux1 = 0;
   double aux2 = 0;
+  int aux2v1 = 0;
 
   calculator() {
     // ignore: unnecessary_null_comparison
@@ -29,6 +30,9 @@ class _TemperaturaState extends State<Temperatura> {
       resultado2 = 'Dados inseridos invalidos';
     } else {
       aux2 = (double.tryParse(_controler2)! - 32) / 1.8;
+      aux2 *= 100;
+      aux2v1 = aux2.round();
+      aux2 = aux2v1 / 100;
       resultado2 = '$_controler2 Fahrenheit em Graus é $aux2 Graus';
     }
   }

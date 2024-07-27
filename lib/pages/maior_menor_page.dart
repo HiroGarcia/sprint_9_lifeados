@@ -23,6 +23,7 @@ class _MaiorMenorState extends State<MaiorMenor> {
         double.tryParse(_controler2) == null ||
         double.tryParse(_controler3) == null) {
       resultado1 = 'Dados inseridos invalidos';
+      resultado2 = 'Dados inseridos invalidos';
     } else {
       if ((double.tryParse(_controler1)! == double.tryParse(_controler2)!) &&
           (double.tryParse(_controler1)! == double.tryParse(_controler3)!)) {
@@ -73,7 +74,7 @@ class _MaiorMenorState extends State<MaiorMenor> {
                 style: TextStyle(color: Colors.black, fontSize: 18),
               ),
             ),
-            const Text('Maior e Menor '),
+            const Text('Maior e Menor de 3 Valores'),
           ],
         ),
       ),
