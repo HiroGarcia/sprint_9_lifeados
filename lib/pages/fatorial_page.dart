@@ -10,7 +10,7 @@ class Fatorial extends StatefulWidget {
 }
 
 class _FatorialState extends State<Fatorial> {
-  String resultado = 'Teste';
+  String resultado = '';
   var _controler1 = '';
 
   calculator() {

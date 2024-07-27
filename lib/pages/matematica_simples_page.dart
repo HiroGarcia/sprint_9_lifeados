@@ -10,7 +10,7 @@ class OperacaoesPage extends StatefulWidget {
 }
 
 class _OperacaoesPageState extends State<OperacaoesPage> {
-  String resultado = 'Teste';
+  String resultado = '';
   var _controler1 = '';
   var _controler2 = '';
   double? aux;
@@ -19,7 +19,7 @@ class _OperacaoesPageState extends State<OperacaoesPage> {
     // ignore: unnecessary_null_comparison
     if (double.tryParse(_controler1) == null ||
         double.tryParse(_controler2) == null) {
-      resultado = 'Erro';
+      resultado = 'Dados inseridos invalidos';
     } else {
       aux = double.tryParse(_controler1)! + double.tryParse(_controler2)!;
       resultado = aux.toString();

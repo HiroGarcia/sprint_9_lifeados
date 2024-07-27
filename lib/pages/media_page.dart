@@ -10,7 +10,7 @@ class Media extends StatefulWidget {
 }
 
 class _MediaState extends State<Media> {
-  String resultado = 'Teste';
+  String resultado = '';
   var _controler1 = '';
   var _controler2 = '';
   var _controler3 = '';
@@ -21,7 +21,7 @@ class _MediaState extends State<Media> {
     if (double.tryParse(_controler1) == null ||
         double.tryParse(_controler2) == null ||
         double.tryParse(_controler3) == null) {
-      resultado = 'Erro';
+      resultado = 'Dados inseridos invalidos';
     } else {
       aux = (double.tryParse(_controler1)! +
               double.tryParse(_controler2)! +

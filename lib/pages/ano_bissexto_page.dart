@@ -10,13 +10,13 @@ class AnoBissexto extends StatefulWidget {
 }
 
 class _AnoBissextoState extends State<AnoBissexto> {
-  String resultado = 'Teste';
+  String resultado = '';
   var _controler1 = '';
 
   calculator() {
     // ignore: unnecessary_null_comparison
     if (double.tryParse(_controler1) == null) {
-      resultado = 'Erro';
+      resultado = 'Dados inseridos invalidos';
     } else {
       if (double.tryParse(_controler1)! < 1882) {
         if (double.tryParse(_controler1)! % 4 == 0) {
