@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sprint_9/utilidades/field_box.dart';
 
 import '../utilidades/dialog_box.dart';
 
@@ -10,39 +11,39 @@ class MaiorMenor extends StatefulWidget {
 }
 
 class _MaiorMenorState extends State<MaiorMenor> {
+  final TextEditingController _controler1 = TextEditingController();
+  final TextEditingController _controler2 = TextEditingController();
+  final TextEditingController _controler3 = TextEditingController();
   String resultado1 = '';
   String resultado2 = '';
-  double maior = 0;
-  double menor = 0;
-  var _controler1 = '';
-  var _controler2 = '';
-  var _controler3 = '';
 
   calculator() {
-    if (double.tryParse(_controler1) == null ||
-        double.tryParse(_controler2) == null ||
-        double.tryParse(_controler3) == null) {
+    if (double.tryParse(_controler1.text) == null ||
+        double.tryParse(_controler2.text) == null ||
+        double.tryParse(_controler3.text) == null) {
       resultado1 = 'Dados inseridos invalidos';
       resultado2 = 'Dados inseridos invalidos';
     } else {
-      if ((double.tryParse(_controler1)! == double.tryParse(_controler2)!) &&
-          (double.tryParse(_controler1)! == double.tryParse(_controler3)!)) {
+      if ((double.tryParse(_controler1.text)! ==
+              double.tryParse(_controler2.text)!) &&
+          (double.tryParse(_controler1.text)! ==
+              double.tryParse(_controler3.text)!)) {
         resultado1 = 'Todos os numeros são iguais';
         resultado2 = 'Todos os numeros são iguais';
       } else {
-        double maior = double.tryParse(_controler1)!;
-        double menor = double.tryParse(_controler1)!;
-        if (double.tryParse(_controler2)! > maior) {
-          maior = double.tryParse(_controler2)!;
+        double maior = double.tryParse(_controler1.text)!;
+        double menor = double.tryParse(_controler1.text)!;
+        if (double.tryParse(_controler2.text)! > maior) {
+          maior = double.tryParse(_controler2.text)!;
         }
-        if (double.tryParse(_controler3)! > maior) {
-          maior = double.tryParse(_controler3)!;
+        if (double.tryParse(_controler3.text)! > maior) {
+          maior = double.tryParse(_controler3.text)!;
         }
-        if (double.tryParse(_controler2)! < menor) {
-          menor = double.tryParse(_controler2)!;
+        if (double.tryParse(_controler2.text)! < menor) {
+          menor = double.tryParse(_controler2.text)!;
         }
-        if (double.tryParse(_controler3)! < menor) {
-          menor = double.tryParse(_controler3)!;
+        if (double.tryParse(_controler3.text)! < menor) {
+          menor = double.tryParse(_controler3.text)!;
         }
         resultado1 = 'Maior $maior';
         resultado2 = 'Menor $menor';
@@ -83,78 +84,20 @@ class _MaiorMenorState extends State<MaiorMenor> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-              onChanged: (value) {
-                _controler1 = value;
-                // ignore: avoid_print
-                print(value);
-              },
-              decoration: InputDecoration(
-                labelText: 'Primerio Valor',
-                labelStyle: const TextStyle(
-                  color: Colors.black,
-                ),
-                floatingLabelStyle: TextStyle(color: Colors.blue.shade900),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Colors.blue.shade900, width: 1.4),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
+            MyFieldBox(
+              controler: _controler1,
+              texto: 'Primeiro Valor',
             ),
             Padding(
               padding: const EdgeInsets.only(top: 15, bottom: 15),
-              child: TextField(
-                onChanged: (value) {
-                  _controler2 = value;
-                  // ignore: avoid_print
-                  print(value);
-                },
-                decoration: InputDecoration(
-                  labelText: 'Segundo Valor',
-                  labelStyle: const TextStyle(
-                    color: Colors.black,
-                  ),
-                  floatingLabelStyle: TextStyle(
-                    color: Colors.blue.shade900,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.blue.shade900, width: 1.4),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
+              child: MyFieldBox(
+                controler: _controler2,
+                texto: 'Segundo Valor',
               ),
             ),
-            TextField(
-              onChanged: (value) {
-                _controler3 = value;
-                // ignore: avoid_print
-                print(value);
-              },
-              decoration: InputDecoration(
-                labelText: 'Terceiro Valor',
-                labelStyle: const TextStyle(
-                  color: Colors.black,
-                ),
-                floatingLabelStyle: TextStyle(
-                  color: Colors.blue.shade900,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Colors.blue.shade900, width: 1.4),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
+            MyFieldBox(
+              controler: _controler3,
+              texto: 'Terceiro Valor',
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20, bottom: 25),

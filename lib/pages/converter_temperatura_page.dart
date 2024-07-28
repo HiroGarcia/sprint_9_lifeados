@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../utilidades/dialog_box.dart';
+import '../utilidades/field_box.dart';
 
 class Temperatura extends StatefulWidget {
   const Temperatura({super.key});
@@ -10,30 +11,30 @@ class Temperatura extends StatefulWidget {
 }
 
 class _TemperaturaState extends State<Temperatura> {
+  final TextEditingController _controler1 = TextEditingController();
+  final TextEditingController _controler2 = TextEditingController();
   String resultado1 = '';
   String resultado2 = '';
-  var _controler1 = '';
-  var _controler2 = '';
-  double aux1 = 0;
-  double aux2 = 0;
-  int aux2v1 = 0;
 
   calculator() {
+    double aux1 = 0;
+    double aux2 = 0;
+    int aux2v1 = 0;
     // ignore: unnecessary_null_comparison
-    if (double.tryParse(_controler1) == null) {
+    if (double.tryParse(_controler1.text) == null) {
       resultado1 = 'Dados inseridos invalidos';
     } else {
-      aux1 = double.tryParse(_controler1)! * 1.8 + 32;
-      resultado1 = '$_controler1 Graus em Fahrenheit é $aux1 Fahrenheit';
+      aux1 = double.tryParse(_controler1.text)! * 1.8 + 32;
+      resultado1 = '${_controler1.text} Graus em Fahrenheit é $aux1 Fahrenheit';
     }
-    if (double.tryParse(_controler2) == null) {
+    if (double.tryParse(_controler2.text) == null) {
       resultado2 = 'Dados inseridos invalidos';
     } else {
-      aux2 = (double.tryParse(_controler2)! - 32) / 1.8;
+      aux2 = (double.tryParse(_controler2.text)! - 32) / 1.8;
       aux2 *= 100;
       aux2v1 = aux2.round();
       aux2 = aux2v1 / 100;
-      resultado2 = '$_controler2 Fahrenheit em Graus é $aux2 Graus';
+      resultado2 = '${_controler2.text} Fahrenheit em Graus é $aux2 Graus';
     }
   }
 
@@ -70,53 +71,15 @@ class _TemperaturaState extends State<Temperatura> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-              onChanged: (value) {
-                _controler1 = value;
-                // ignore: avoid_print
-                print(value);
-              },
-              decoration: InputDecoration(
-                labelText: 'Temperatura em Graus para Fahrenheit',
-                labelStyle: const TextStyle(
-                  color: Colors.black,
-                ),
-                floatingLabelStyle: TextStyle(color: Colors.blue.shade900),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Colors.blue.shade900, width: 1.4),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
+            MyFieldBox(
+              controler: _controler1,
+              texto: 'Temperatura em Graus para Fahrenheit',
             ),
             Padding(
               padding: const EdgeInsets.only(top: 15),
-              child: TextField(
-                onChanged: (value) {
-                  _controler2 = value;
-                  // ignore: avoid_print
-                  print(value);
-                },
-                decoration: InputDecoration(
-                  labelText: 'Temperatura em Fahrenheit para Graus',
-                  labelStyle: const TextStyle(
-                    color: Colors.black,
-                  ),
-                  floatingLabelStyle: TextStyle(
-                    color: Colors.blue.shade900,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.blue.shade900, width: 1.4),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
+              child: MyFieldBox(
+                controler: _controler2,
+                texto: 'Temperatura em Fahrenheit para Graus',
               ),
             ),
             Padding(

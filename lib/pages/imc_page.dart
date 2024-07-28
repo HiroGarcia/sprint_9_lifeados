@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sprint_9/utilidades/field_box.dart';
 
 import '../utilidades/dialog_box.dart';
 
@@ -10,19 +11,21 @@ class ImcPage extends StatefulWidget {
 }
 
 class _ImcPageState extends State<ImcPage> {
+  final TextEditingController _controler1 = TextEditingController();
+  final TextEditingController _controler2 = TextEditingController();
   String resultado = '';
-  var _controler1 = '';
-  var _controler2 = '';
-  double aux = 0;
-  int aux1 = 0;
+
   calculator() {
+    double aux = 0;
+    int aux1 = 0;
     // ignore: unnecessary_null_comparison
-    if (double.tryParse(_controler1) == null ||
-        double.tryParse(_controler2) == null) {
+    if (double.tryParse(_controler1.text) == null ||
+        double.tryParse(_controler2.text) == null) {
       resultado = 'Dados inseridos invalidos';
     } else {
-      aux = double.tryParse(_controler1)! /
-          (double.tryParse(_controler2)! * double.tryParse(_controler2)!);
+      aux = double.tryParse(_controler1.text)! /
+          (double.tryParse(_controler2.text)! *
+              double.tryParse(_controler2.text)!);
       // esta multiplicando para andar 2 casas decimais, depois arredondo e volta a ser decimal
       // assim volta a ser um double porem não fica mais de 2 numeros depois da virgura
       aux *= 100;
@@ -66,53 +69,15 @@ class _ImcPageState extends State<ImcPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-              onChanged: (value) {
-                _controler1 = value;
-                // ignore: avoid_print
-                print(value);
-              },
-              decoration: InputDecoration(
-                labelText: 'Peso',
-                labelStyle: const TextStyle(
-                  color: Colors.black,
-                ),
-                floatingLabelStyle: TextStyle(color: Colors.blue.shade900),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Colors.blue.shade900, width: 1.4),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
+            MyFieldBox(
+              controler: _controler1,
+              texto: 'Peso',
             ),
             Padding(
               padding: const EdgeInsets.only(top: 15, bottom: 15),
-              child: TextField(
-                onChanged: (value) {
-                  _controler2 = value;
-                  // ignore: avoid_print
-                  print(value);
-                },
-                decoration: InputDecoration(
-                  labelText: 'Altura',
-                  labelStyle: const TextStyle(
-                    color: Colors.black,
-                  ),
-                  floatingLabelStyle: TextStyle(
-                    color: Colors.blue.shade900,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.blue.shade900, width: 1.4),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
+              child: MyFieldBox(
+                controler: _controler2,
+                texto: 'Altura',
               ),
             ),
             Padding(

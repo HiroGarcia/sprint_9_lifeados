@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sprint_9/utilidades/field_box.dart';
 
 import '../utilidades/dialog_box.dart';
 
@@ -10,15 +11,15 @@ class TestePrimo extends StatefulWidget {
 }
 
 class _TestePrimoState extends State<TestePrimo> {
+  final TextEditingController _controler1 = TextEditingController();
   String resultado = '';
-  var _controler1 = '';
 
   calculator() {
     // ignore: unnecessary_null_comparison
-    if (double.tryParse(_controler1) == null) {
+    if (double.tryParse(_controler1.text) == null) {
       resultado = 'Dados inseridos invalidos';
     } else {
-      int n = int.tryParse(_controler1)!;
+      int n = int.tryParse(_controler1.text)!;
       int aux = 0;
 
       if (n < 0) {
@@ -71,27 +72,9 @@ class _TestePrimoState extends State<TestePrimo> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-              onChanged: (value) {
-                _controler1 = value;
-                // ignore: avoid_print
-                print(value);
-              },
-              decoration: InputDecoration(
-                labelText: 'Número',
-                labelStyle: const TextStyle(
-                  color: Colors.black,
-                ),
-                floatingLabelStyle: TextStyle(color: Colors.blue.shade900),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Colors.blue.shade900, width: 1.4),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
+            MyFieldBox(
+              controler: _controler1,
+              texto: 'Número',
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20, bottom: 15),

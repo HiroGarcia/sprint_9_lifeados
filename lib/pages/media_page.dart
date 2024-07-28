@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../utilidades/dialog_box.dart';
+import '../utilidades/field_box.dart';
 
 class Media extends StatefulWidget {
   const Media({super.key});
@@ -10,22 +11,22 @@ class Media extends StatefulWidget {
 }
 
 class _MediaState extends State<Media> {
+  final TextEditingController _controler1 = TextEditingController();
+  final TextEditingController _controler2 = TextEditingController();
+  final TextEditingController _controler3 = TextEditingController();
   String resultado = '';
-  var _controler1 = '';
-  var _controler2 = '';
-  var _controler3 = '';
-  double? aux;
 
   calculator() {
+    double? aux;
     // ignore: unnecessary_null_comparison
-    if (double.tryParse(_controler1) == null ||
-        double.tryParse(_controler2) == null ||
-        double.tryParse(_controler3) == null) {
+    if (double.tryParse(_controler1.text) == null ||
+        double.tryParse(_controler2.text) == null ||
+        double.tryParse(_controler3.text) == null) {
       resultado = 'Dados inseridos invalidos';
     } else {
-      aux = (double.tryParse(_controler1)! +
-              double.tryParse(_controler2)! +
-              double.tryParse(_controler3)!) /
+      aux = (double.tryParse(_controler1.text)! +
+              double.tryParse(_controler2.text)! +
+              double.tryParse(_controler3.text)!) /
           3;
       resultado = aux.toString();
     }
@@ -64,78 +65,20 @@ class _MediaState extends State<Media> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-              onChanged: (value) {
-                _controler1 = value;
-                // ignore: avoid_print
-                print(value);
-              },
-              decoration: InputDecoration(
-                labelText: 'Primerio Valor',
-                labelStyle: const TextStyle(
-                  color: Colors.black,
-                ),
-                floatingLabelStyle: TextStyle(color: Colors.blue.shade900),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Colors.blue.shade900, width: 1.4),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
+            MyFieldBox(
+              controler: _controler1,
+              texto: 'Primeiro Valor',
             ),
             Padding(
               padding: const EdgeInsets.only(top: 15, bottom: 15),
-              child: TextField(
-                onChanged: (value) {
-                  _controler2 = value;
-                  // ignore: avoid_print
-                  print(value);
-                },
-                decoration: InputDecoration(
-                  labelText: 'Segundo Valor',
-                  labelStyle: const TextStyle(
-                    color: Colors.black,
-                  ),
-                  floatingLabelStyle: TextStyle(
-                    color: Colors.blue.shade900,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.blue.shade900, width: 1.4),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
+              child: MyFieldBox(
+                controler: _controler2,
+                texto: 'Segundo Valor',
               ),
             ),
-            TextField(
-              onChanged: (value) {
-                _controler3 = value;
-                // ignore: avoid_print
-                print(value);
-              },
-              decoration: InputDecoration(
-                labelText: 'Terceiro Valor',
-                labelStyle: const TextStyle(
-                  color: Colors.black,
-                ),
-                floatingLabelStyle: TextStyle(
-                  color: Colors.blue.shade900,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Colors.blue.shade900, width: 1.4),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
+            MyFieldBox(
+              controler: _controler3,
+              texto: 'Terceiro Valor',
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20, bottom: 15),
