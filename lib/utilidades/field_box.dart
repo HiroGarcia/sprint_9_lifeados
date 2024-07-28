@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class MyFieldBox extends StatelessWidget {
-  TextEditingController controler;
-  String texto;
+  final TextEditingController controler;
+  final String texto;
 
-  MyFieldBox({
+  const MyFieldBox({
     super.key,
     required this.controler,
     required this.texto,
@@ -14,6 +14,7 @@ class MyFieldBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      keyboardType: TextInputType.number,
       controller: controler,
       onChanged: (value) {
         // ignore: avoid_print
